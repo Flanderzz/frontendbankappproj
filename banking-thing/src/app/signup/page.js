@@ -24,7 +24,7 @@ export default function signup() {
     const handleSignUp = async () => {
         try {
             const name = firstName + " " + lastName
-            const response = await fetch("https://bank-app-bankend.onrender.com/api/auth/register", {
+            const response = await fetch("http://localhost:4000/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

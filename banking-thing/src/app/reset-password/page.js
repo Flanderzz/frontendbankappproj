@@ -28,7 +28,7 @@ export default function Component() {
           <CardFooter className="flex justify-between">
             <Link
               className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-              href="#"
+              href="/login"
             >
               <ArrowLeftIcon className="h-4 w-4" />
               Back to Login

@@ -1,70 +1,57 @@
 "use client";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
+import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
+import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu";
-import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card";
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table";
-
-
-
-export default function statements() {
-        const [transactions, setTransactions] = useState([]);
-
-        useEffect(() => {
-                const token = localStorage.getItem("token");
-                fetch("https://bank-app-bankend.onrender.com/api/banking/user/getTransactions", {
-                        headers: {
-                        Authorization: `Bearer ${token}`
-                        }
-                })
-                        .then((response) => response.json())
-                        .then((data) => setTransactions(data));
-        }, []);
-
-    return (
-        <div className="flex h-screen flex-col">
-            <div className="grid h-full w-full grid-cols-[280px_1fr] overflow-hidden">
-                <div className="hidden border-r bg-gray-100/40 dark:bg-gray-800/40 lg:block">
-                    <div className="flex h-full max-h-screen flex-col gap-2">
-                        <div className="flex h-[60px] items-center border-b px-6">
-                            <Link className="flex items-center gap-2 font-semibold" href="#">
-                                <BanknoteIcon className="h-6 w-6" />
-                                <span className="">Banking App</span>
-                            </Link>
-                            <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
-                                <BellIcon className="h-4 w-4" />
-                                <span className="sr-only">Toggle notifications</span>
-                            </Button>
-                        </div>
-                        <div className="flex-1 overflow-auto py-2">
-                            <nav className="grid items-start px-4 text-sm font-medium">
-                                <Link
-                                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                                    href="/">
-                                    <HomeIcon className="h-4 w-4" />
-                                    Dashboard
-                                </Link>
-                                <Link
-                                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                                    href="/transfers">
-                                    <MoveIcon className="h-4 w-4" />
-                                    Transfers
-                                </Link>
-                                <Link
-                                    className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900 transition-all dark:bg-gray-800 dark:text-gray-50"
-                                    href="/statements">
-                                    <FileIcon className="h-4 w-4" />
-                                    Statements
-                                </Link>
-                                <Link
-                                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                                    href="/settings">
-                                    <SettingsIcon className="h-4 w-4" />
-                                    Settings
-                                </Link>
-                                <Link
+export default function Component() {
+  return (
+    <div className="flex h-screen flex-col">
+      <div className="grid h-full w-full grid-cols-[280px_1fr] overflow-hidden">
+        <div className="hidden border-r bg-gray-100/40 dark:bg-gray-800/40 lg:block">
+          <div className="flex h-full max-h-screen flex-col gap-2">
+            <div className="flex h-[60px] items-center border-b px-6">
+              <Link className="flex items-center gap-2 font-semibold" href="#">
+                <BanknoteIcon className="h-6 w-6" />
+                <span className="">Banking App</span>
+              </Link>
+              <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
+                <BellIcon className="h-4 w-4" />
+                <span className="sr-only">Toggle notifications</span>
+              </Button>
+            </div>
+            <div className="flex-1 overflow-auto py-2">
+              <nav className="grid items-start px-4 text-sm font-medium">
+                <Link
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                  href="/"
+                >
+                  <HomeIcon className="h-4 w-4" />
+                  Dashboard
+                </Link>
+                <Link
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                  href="/transfers"
+                >
+                  <MoveIcon className="h-4 w-4" />
+                  Transfers
+                </Link>
+                <Link
+                  className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900 transition-all dark:bg-gray-800 dark:text-gray-50"
+                  href="/statements"
+                >
+                  <FileIcon className="h-4 w-4" />
+                  Statements
+                </Link>
+                <Link
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                  href="/settings"
+                >
+                  <SettingsIcon className="h-4 w-4" />
+                  Settings
+                </Link>
+                <Link
                                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-red-500 transition-all hover:text-red-600 dark:text-red-500 dark:hover:text-red-600"
                                   href="/login"
                                   onClick={() => {
@@ -75,87 +62,105 @@ export default function statements() {
                                   <LogOutIcon className="h-4 w-4" />
                                   Logout
                                 </Link>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-col">
-                    <header
-                        className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
-                        <Link className="lg:hidden" href="#">
-                            <BanknoteIcon className="h-6 w-6" />
-                            <span className="sr-only">Home</span>
-                        </Link>
-                        <div className="w-full flex-1">
-                            <h1 className="text-lg font-semibold">Statements</h1>
-                        </div>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800 dark:border-gray-800"
-                                    size="icon"
-                                    variant="ghost">
-                                    <img
-                                        alt="Avatar"
-                                        className="rounded-full"
-                                        height="32"
-                                        src="/placeholder.svg"
-                                        style={{
-                                            aspectRatio: "32/32",
-                                            objectFit: "cover",
-                                        }}
-                                        width="32" />
-                                    <span className="sr-only">Toggle user menu</span>
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>Settings</DropdownMenuItem>
-                                <DropdownMenuItem>Support</DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>Logout</DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </header>
-                    <main className="flex-1 flex flex-col gap-4 p-4 md:gap-8 md:p-6">
-                        <Card className="w-full">
-                            <CardHeader>
-                                <CardTitle>Statements</CardTitle>
-                                <CardDescription>View your account statements.</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead>Date</TableHead>
-                                            <TableHead>Description</TableHead>
-                                            <TableHead className="text-right">Amount</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-
-                                            {Array.isArray(transactions) && transactions.map((transaction) => (
-                                                    <TableRow key={transaction.id}>
-                                                            <TableCell>{transaction.date}</TableCell>
-                                                            <TableCell>{transaction.description}</TableCell>
-                                                            <TableCell className="text-right">-{transaction.amount}</TableCell>
-                                                    </TableRow>
-                                            ))}
-                                    </TableBody>
-                                </Table>
-                            </CardContent>
-                        </Card>
-                    </main>
-                </div>
+              </nav>
             </div>
+          </div>
         </div>
-    );
+        <div className="flex flex-col">
+          <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
+            <Link className="lg:hidden" href="#">
+              <BanknoteIcon className="h-6 w-6" />
+              <span className="sr-only">Home</span>
+            </Link>
+            <div className="w-full flex-1">
+              <h1 className="text-lg font-semibold">Statements</h1>
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800"
+                  size="icon"
+                  variant="ghost"
+                >
+                  <img
+                    alt="Avatar"
+                    className="rounded-full"
+                    height="32"
+                    src="/placeholder.svg"
+                    style={{
+                      aspectRatio: "32/32",
+                      objectFit: "cover",
+                    }}
+                    width="32"
+                  />
+                  <span className="sr-only">Toggle user menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </header>
+          <main className="flex-1 flex flex-col gap-4 p-4 md:gap-8 md:p-6">
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>Statements</CardTitle>
+                <CardDescription>View your account statements.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Date</TableHead>
+                      <TableHead>Description</TableHead>
+                      <TableHead className="text-right">Amount</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>April 15, 2023</TableCell>
+                      <TableCell>Monthly Rent Payment</TableCell>
+                      <TableCell className="text-right">-$1,500.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>April 10, 2023</TableCell>
+                      <TableCell>Paycheck Deposit</TableCell>
+                      <TableCell className="text-right">$3,200.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>April 5, 2023</TableCell>
+                      <TableCell>Grocery Purchase</TableCell>
+                      <TableCell className="text-right">-$125.43</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>March 30, 2023</TableCell>
+                      <TableCell>Utility Bill Payment</TableCell>
+                      <TableCell className="text-right">-$200.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>March 25, 2023</TableCell>
+                      <TableCell>Online Shopping</TableCell>
+                      <TableCell className="text-right">-$87.62</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </main>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function BanknoteIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -165,18 +170,19 @@ function BanknoteIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <rect width="20" height="12" x="2" y="6" rx="2" />
       <circle cx="12" cy="12" r="2" />
       <path d="M6 12h.01M18 12h.01" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function BellIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -186,17 +192,18 @@ function BellIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
       <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function FileIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -206,17 +213,18 @@ function FileIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
       <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function HomeIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -226,17 +234,18 @@ function HomeIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function LogOutIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -246,18 +255,19 @@ function LogOutIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
       <polyline points="16 17 21 12 16 7" />
       <line x1="21" x2="9" y1="12" y2="12" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function MoveIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -267,21 +277,22 @@ function MoveIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
+      strokeLinejoin="round"
+    >
       <polyline points="5 9 2 12 5 15" />
       <polyline points="9 5 12 2 15 5" />
       <polyline points="15 19 12 22 9 19" />
       <polyline points="19 9 22 12 19 15" />
       <line x1="2" x2="22" y1="12" y2="12" />
       <line x1="12" x2="12" y1="2" y2="22" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function SettingsIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -291,18 +302,18 @@ function SettingsIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
-      <path
-        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+      strokeLinejoin="round"
+    >
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
       <circle cx="12" cy="12" r="3" />
-    </svg>)
-  );
+    </svg>
+  )
 }
 
 
 function TicketIcon(props) {
   return (
-    (<svg
+    <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -312,12 +323,12 @@ function TicketIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
-      strokeLinejoin="round">
-      <path
-        d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+      strokeLinejoin="round"
+    >
+      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
       <path d="M13 5v2" />
       <path d="M13 17v2" />
       <path d="M13 11v2" />
-    </svg>)
-  );
+    </svg>
+  )
 }

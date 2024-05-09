@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch(" https://bank-app-bankend.onrender.com/api/banking/user/getuser", {
+    fetch(" http://localhost:4000/api/banking/user/getuser", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
